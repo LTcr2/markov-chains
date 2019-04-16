@@ -39,13 +39,31 @@ def make_chains(text_string):
         >>> chains[('there','juanita')]
         [None]
     """
+    #the argument-less version of .split(), so it breaks on any kind of whitespace, including linebreaks, spaces, and tabs.
+    #this becomes a list of strings
     split_string = text_string.split()
 
-
+    #make empty dictionary
     chains = {}
 
-    # your code goes here
+    #loop through each item in list
+        #create bigrams (word pairs) as tuples
+        #add to dictionary as KEYS
+        #if it's the first time key added, we create its value as a list of word_after
+        #if key already in dict, we add word_after to the existing list
 
+    for i in range(0, (len(split_string)-2)):
+        bigram_tuple = (split_string[i], split_string[i+1])
+        word_after = split_string[i+2]
+
+        if bigram_tuple not in chains:
+            chains[bigram_tuple] = [word_after]
+
+        else:
+            chains[bigram_tuple].append(word_after)
+            #chains[bigram_tuple] += [word_after[:] also works :)
+
+    print(chains)
     return chains
 
 
