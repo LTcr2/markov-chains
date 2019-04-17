@@ -137,6 +137,13 @@ def make_ngram_text(chains):
 
     return " ".join(words)
 
+#in make_ngram_text, to start only on a capital letter:
+# I think we should also make sure initial generative key is added to word list
+# and then do an if-else to only add & use initial generative key if it begins with capital letter
+# if randomly chosen generative key begins with lower case try again until you get a capitalized one 
+#use method .isupper(), like "if generative_key[0][0].isupper()"
+
+# sam i am? you.upper()
 
 input_path = argv[1]
 
