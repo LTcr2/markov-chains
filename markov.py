@@ -8,15 +8,10 @@ def open_and_read_file(file_path):
     Takes a string that is a file path, opens the file, and turns
     the file's contents as one string of text.
     """
-    data_file = open(file_path)
-    read_file = data_file.read()
 
-    data_file.close()
-
-    return read_file
-
-    #refactor with  "with"
-
+    with open(file_path) as data_file:
+        read_file = data_file.read()
+        return read_file
 
 def make_chains(text_string):
     """Take input text as string; return dictionary of Markov chains.
@@ -95,10 +90,6 @@ def make_text(chains):
         except KeyError:
             #print("Key Error, end of chain reached")
             break 
-
-    # print(generative_key)
-    # print(markov_word)
-    # print(words)
 
     return " ".join(words)
 
