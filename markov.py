@@ -10,8 +10,7 @@ def open_and_read_file(file_path):
     """
 
     with open(file_path) as data_file:
-        read_file = data_file.read()
-        return read_file
+        return data_file.read()
 
 def make_chains(text_string):
     """Take input text as string; return dictionary of Markov chains.
@@ -94,7 +93,7 @@ def make_text(chains):
     return " ".join(words)
 
 
-input_path = "green-eggs.txt"
+input_path = "raven.txt"
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
