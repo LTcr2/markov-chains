@@ -2,7 +2,6 @@
 
 from random import choice
 
-
 def open_and_read_file(file_path):
     """Take file path as string; return text as string.
 
@@ -12,7 +11,11 @@ def open_and_read_file(file_path):
     data_file = open(file_path)
     read_file = data_file.read()
 
+    data_file.close()
+
     return read_file
+
+    #refactor with  "with"
 
 
 def make_chains(text_string):
@@ -63,7 +66,9 @@ def make_chains(text_string):
             chains[bigram_tuple].append(word_after)
             #chains[bigram_tuple] += [word_after[:] also works :)
 
-    print(chains)
+        #.setfault() ?? to refactor this if-else as single line
+
+    #print(chains)
     return chains
 
 
@@ -72,7 +77,28 @@ def make_text(chains):
 
     words = []
 
-    # your code goes here
+    generative_key = choice(list(chains.keys()))
+    # print("key initialized as " + str(generative_key))
+
+    while True:
+
+        try:
+            markov_word = choice(chains[generative_key])
+            # print("markov word from that key is " + markov_word)
+
+            words.append(markov_word)
+            # print("current word list is " + str(words))
+
+            generative_key = (generative_key[1], markov_word)
+            # print("next generative key is " + str(generative_key))
+
+        except KeyError:
+            #print("Key Error, end of chain reached")
+            break 
+
+    # print(generative_key)
+    # print(markov_word)
+    # print(words)
 
     return " ".join(words)
 
